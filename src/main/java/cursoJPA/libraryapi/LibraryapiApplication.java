@@ -28,7 +28,7 @@ public class LibraryapiApplication {
 		
 		autor.setNome("filipe");
 		autor.setNacionalidade("brasileiro");
-		autor.setDataNascimento(LocalDate.of(1994, 3, 14));
+		autor.setDataNascimento(LocalDate.of(1990, 8, 25));
 
 		Autor autorSalvo = repository.save(autor);
 		// var autorSalvo = repository.save(autor); pode usar esse tbm
