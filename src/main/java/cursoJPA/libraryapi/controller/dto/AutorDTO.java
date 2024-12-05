@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Size;
 
 public record AutorDTO(
 
+    //o ExceptionHandler vai capturar essa msg de exception, olhar o globalExceptionHandler
     @NotBlank(message = "Campo obrigatório")
     @Size(min=2, max = 100, message = "Campo fora do tamanho padrão")
     String nome, 
@@ -21,6 +22,7 @@ public record AutorDTO(
     @NotBlank(message = "Campo obrigatório")
     @Size(min=2, max = 50, message = "Campo fora do tamanho padrão")
     String nacionalidade) {
+
 
     public Autor mapearParaAutor(){
         Autor autor = new Autor();

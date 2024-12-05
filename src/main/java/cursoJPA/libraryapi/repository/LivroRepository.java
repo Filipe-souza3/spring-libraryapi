@@ -88,7 +88,7 @@ public interface LivroRepository extends JpaRepository<Livro, UUID> {
          """)
     List<Livro> findByGeneroPositionalParam(GeneroLivro genero, String ordenacao);
 
-    /*para alterar dados update delete  tem q abrir transacao e colocar a tbm Modifying 
+    /*para alterar dados (update, delete) tem q abrir transacao e colocar a tbm Modifying 
      * os metodos q usam transactional presicam ser public
      */
     @Modifying
@@ -97,7 +97,7 @@ public interface LivroRepository extends JpaRepository<Livro, UUID> {
     void delete(GeneroLivro genero);
 
 
-    /*para alterar dados update delete  tem q abrir transacao e colocar a tbm Modifying
+    /*para alterar dados (update, delete) tem q abrir transacao e colocar a tbm Modifying
      *  os metodos q usam transactional presicam ser public
      */
     @Modifying

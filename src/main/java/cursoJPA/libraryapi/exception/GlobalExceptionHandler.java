@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import cursoJPA.libraryapi.controller.dto.ErroCampoDTO;
 import cursoJPA.libraryapi.controller.dto.ErroRespostaDTO;
 
-@RestControllerAdvice // capturar exceptions
+@RestControllerAdvice // capturar exceptions que voce quer
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -26,6 +26,24 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toList());
 
         return new ErroRespostaDTO(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Erro de validação", erroCampo);
+    }
+
+    @ExceptionHandler(RegistroDuplicadoException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErroRespostaDTO handlerMethodRegistroDuplicadoException(RegistroDuplicadoException e){
+        return ErroRespostaDTO.conflito(e.getMessage());
+    }
+
+    @ExceptionHandler(NaoPermitidoException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErroRespostaDTO handlerMethodNaoPermitidoException(NaoPermitidoException e){
+        return ErroRespostaDTO.respostaPadrao(e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErroRespostaDTO handlerMethodErroNaoTratado(RuntimeException e){
+        return new ErroRespostaDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro inesperado no servidor", List.of());
     }
 
 }

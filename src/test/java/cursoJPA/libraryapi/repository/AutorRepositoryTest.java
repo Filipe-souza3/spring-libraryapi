@@ -53,7 +53,7 @@ public class AutorRepositoryTest {
             System.out.println("Autor encontrado:");
             System.out.println(autorEncontrado);
 
-            autorEncontrado.setDataNascimento(LocalDate.of(1990, 3, 14));
+            autorEncontrado.setDataNascimento(LocalDate.of(1990, 9, 14));
             repository.save(autorEncontrado);
         }
     }
