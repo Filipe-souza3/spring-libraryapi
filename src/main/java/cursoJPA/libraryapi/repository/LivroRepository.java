@@ -15,6 +15,7 @@ import cursoJPA.libraryapi.model.Livro;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 
@@ -32,6 +33,7 @@ public interface LivroRepository extends JpaRepository<Livro, UUID> {
     List<Livro> findByAutor(Autor autor);
 
     List<Livro> findByTitulo(String titulo);
+    Optional<Livro> findByIsbn(String isbn);
 
     List<Livro> findByTituloAndPreco(String titulo, BigDecimal preco);
 

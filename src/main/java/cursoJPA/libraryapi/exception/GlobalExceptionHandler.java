@@ -30,20 +30,34 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RegistroDuplicadoException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ErroRespostaDTO handlerMethodRegistroDuplicadoException(RegistroDuplicadoException e){
+    public ErroRespostaDTO handlerMethodRegistroDuplicadoException(RegistroDuplicadoException e) {
         return ErroRespostaDTO.conflito(e.getMessage());
     }
 
     @ExceptionHandler(NaoPermitidoException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErroRespostaDTO handlerMethodNaoPermitidoException(NaoPermitidoException e){
+    public ErroRespostaDTO handlerMethodNaoPermitidoException(NaoPermitidoException e) {
         return ErroRespostaDTO.respostaPadrao(e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErroRespostaDTO handlerMethodErroNaoTratado(RuntimeException e){
+    public ErroRespostaDTO handlerMethodErroNaoTratado(RuntimeException e) {
         return new ErroRespostaDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro inesperado no servidor", List.of());
+    }
+
+    @ExceptionHandler(PrecoObrigatorioException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public ErroRespostaDTO handlerMethodPRecoObrigatorio(PrecoObrigatorioException e) {
+        return new ErroRespostaDTO(HttpStatus.NOT_ACCEPTABLE.value(), "Erro validacao",
+                List.of(new ErroCampoDTO(e.getCampo(), e.getMessage())));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErroRespostaDTO handlerMethodIllegalArguments(IllegalArgumentException e) {
+        return new ErroRespostaDTO(HttpStatus.NOT_FOUND.value(), e.getMessage(), List.of());
+
     }
 
 }

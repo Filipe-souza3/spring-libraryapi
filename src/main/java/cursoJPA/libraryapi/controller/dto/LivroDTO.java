@@ -26,7 +26,7 @@ public record LivroDTO(
     GeneroLivro genero,
     BigDecimal preco,
 
-    @NotNull(message = "campo obrigatório")
+    // @NotNull(message = "campo obrigatório")
     UUID autor
 ) {
 

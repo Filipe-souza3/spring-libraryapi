@@ -151,4 +151,10 @@ public class LivroRepositoryTest {
                 UUID.fromString("a94e68c8-5c6f-404b-938d-d1f987779ce6"));
     }
 
+
+    @Test
+    void testEnum(){
+        GeneroLivro.verificar("FICCAOo");
+    }
+
 }
